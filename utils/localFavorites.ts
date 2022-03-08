@@ -1,4 +1,5 @@
 import { type } from 'os';
+import { json } from 'stream/consumers';
 
 const toggleFavorite = (id: number) => {
   let favorites: number[] = JSON.parse(
@@ -24,4 +25,8 @@ const existsFavorite = (id: number) => {
   return favorites.includes(id);
 };
 
-export default { toggleFavorite, existsFavorite };
+const pokemons = (): number[] => {
+  return JSON.parse(localStorage.getItem('favorites') || '[]');
+};
+
+export default { pokemons, toggleFavorite, existsFavorite };
